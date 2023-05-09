@@ -6,6 +6,7 @@ import About from '../pages/About/About'
 import Blog from '../pages/Blog/screens/Blog'
 import SignUp from '../pages/Signup/screens/Signup'
 import Navbar from '../components/Navbar/Navbar'
+import BookList from '../components/BookList/BookList'
 
 const MainRoutes = () => {
   return (
