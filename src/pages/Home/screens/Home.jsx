@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Header from '../../../components/Header/Header';
+import { Outlet } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to GeeksforGeeks</h1>
-    </div>
+    <main>
+      <Header />
+      <Outlet />
+    </main>
   )
 }
 

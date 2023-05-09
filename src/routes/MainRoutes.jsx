@@ -2,10 +2,10 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Home from '../pages/Home/screens/Home'
-import About from '../pages/About/screens/About'
+import About from '../pages/About/About'
 import Blog from '../pages/Blog/screens/Blog'
 import SignUp from '../pages/Signup/screens/Signup'
-import { Navbar } from '../components/Navbar'
+import Navbar from '../components/Navbar/Navbar'
 
 const MainRoutes = () => {
   return (
