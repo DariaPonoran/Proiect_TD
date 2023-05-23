@@ -9,6 +9,7 @@ import BookList from './components/BookList/BookList'
 import BookDetails from './components/BookDetails/BookDetails'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
+import Update from './pages/Update/Upate'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -24,6 +25,7 @@ root.render(
         </Route>
         <Route path='/login' element = {<Login />} />
         <Route path='/register' element = {<Register />} />
+        <Route path='/update' element = {<Update />} />
       </Routes>
     </BrowserRouter>
   </AppProvider>
