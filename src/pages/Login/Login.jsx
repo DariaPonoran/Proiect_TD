@@ -3,8 +3,11 @@ import React from 'react'
 import { useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+
 import './Login.css'
 function Login({ onLogin }) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
@@ -81,7 +84,7 @@ function Login({ onLogin }) {
           <br />
           <button className='btn'>Forgot Password?</button>
           <br />
-          <button className='btn'>Don't have an account? Sign Up</button>
+          <button className='btn' onClick={() => navigate('/register') }>Don't have an account? Sign Up</button>
           <h2>{message}</h2>
         </form>
       </div>

@@ -10,7 +10,6 @@ import BookDetails from './components/BookDetails/BookDetails'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
@@ -19,7 +18,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}>
-          <Route path='about' element={<About />} />
+          <Route path='bookshelf' element={<About />} />
           <Route path='book' element={<BookList />} />
           <Route path='/book/:id' element={<BookDetails />} />
         </Route>
