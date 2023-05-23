@@ -3,24 +3,45 @@ import React from 'react'
 import { useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
+import * as ls from 'local-storage'
 
 import './Login.css'
 function Login({ onLogin }) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
-  const handleSubmit = (event) => {
+
+  const onFirstLoad = async () => {
+    try {
+      const user = ls.get('@user')
+      console.log('local storage user', user)
+      const response = login(user.email, user.password)
+      console.log('usef', response)
+      if (!!response) {
+        navigate('/home')
+      }
+    } catch (error) {}
+  }
+
+  useEffect(() => {
+    onFirstLoad()
+  }, [])
+
+  const handleSubmit = async (event) => {
     console.log('handleSubmit ran')
     event.preventDefault()
-    console.log('email', email)
-    console.log('password', password)
-    getUser(email, password)
+    const user = await login(email, password)
+    if (!!user) {
+      ls.set('@user', user)
+      navigate('/home')
+    }
     setEmail('')
     setPassword('')
   }
-  async function getUser(email, password) {
+
+  const login = async (email, password) => {
     try {
       const response = await axios.get(
         'http://localhost:8080/login/emailAndPassword',
@@ -31,14 +52,9 @@ function Login({ onLogin }) {
           },
         }
       )
-      if (!!response.data.length) {
-        console.log('login')
-      } else {
-        console.log('wrong')
-      }
-      console.log('response', response)
+      return response.data[0]
     } catch (error) {
-      console.error(error)
+      console.log(error)
     }
   }
   const fetchUsers = async () => {
@@ -56,8 +72,8 @@ function Login({ onLogin }) {
   // }, [])
 
   return (
-    <div class='container-login'>
-      <div class='form'>
+    <div className='container-login'>
+      <div className='form'>
         <form>
           <p>Welcome</p>
           <input
@@ -84,16 +100,18 @@ function Login({ onLogin }) {
           <br />
           <button className='btn'>Forgot Password?</button>
           <br />
-          <button className='btn' onClick={() => navigate('/register') }>Don't have an account? Sign Up</button>
+          <button className='btn' onClick={() => navigate('/register')}>
+            Don't have an account? Sign Up
+          </button>
           <h2>{message}</h2>
         </form>
       </div>
-      <div class='drops'>
-        <div class='drop drop-1'></div>
-        <div class='drop drop-2'></div>
-        <div class='drop drop-3'></div>
-        <div class='drop drop-4'></div>
-        <div class='drop drop-5'></div>
+      <div className='drops'>
+        <div className='drop drop-1'></div>
+        <div className='drop drop-2'></div>
+        <div className='drop drop-3'></div>
+        <div className='drop drop-4'></div>
+        <div className='drop drop-5'></div>
       </div>
     </div>
   )
