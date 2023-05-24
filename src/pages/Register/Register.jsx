@@ -7,24 +7,24 @@ function Register() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [passwordConffirmation, setPasswordConffirmation] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const handleSubmit = (event) => {
     console.log('handleSubmit ran')
     event.preventDefault()
     console.log('email', email)
     console.log('password', password)
-    console.log('passwordConffirmation', passwordConffirmation)
-    createUser(email, password, passwordConffirmation)
+    console.log('passwordConfirmation', passwordConfirmation)
+    createUser(email, password, passwordConfirmation)
     setEmail('')
     setPassword('')
-    setPasswordConffirmation('')
+    setPasswordConfirmation('')
   }
-  async function createUser(email, password, passwordConffirmation) {
+  async function createUser(email, password, passwordConfirmation) {
     try {
       const response = await axios.post('http://localhost:8080/signin', {
         email: email,
         password: password,
-        passwordConffirmation: passwordConffirmation,
+        passwordConfirmation: passwordConfirmation,
       })
       if (!!response.data.length) {
         console.log('signin')
@@ -61,12 +61,12 @@ function Register() {
           />
           <br />
           <input
-            id='passwordConffirnmation'
-            name='passwordConffirmation'
+            id='passwordConfirnmation'
+            name='passwordConfirmation'
             type='password'
             placeholder='Confirm Password'
-            onChange={(event) => setPasswordConffirmation(event.target.value)}
-            value={passwordConffirmation}
+            onChange={(event) => setPasswordConfirmation(event.target.value)}
+            value={passwordConfirmation}
           />
           <br />
           <button className='btn' onClick={handleSubmit}>
